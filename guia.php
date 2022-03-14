@@ -5,7 +5,7 @@ if (answer)*/
 
 let guiaAWB=prompt('Introduzca el número de guía:')   
 console.log (id)             
-window.location='reportes/pdfENA.php?id='+id+"&" + "guiaAWB=" + guiaAWB
+window.location='reportes/pdf-guia-ena.php?id='+id+"&" + "guiaAWB=" + guiaAWB
 
 }
 </script>

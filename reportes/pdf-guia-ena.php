@@ -1,9 +1,12 @@
-
-
 <?php
+include_once '../vendor/autoload.php' ;
+require_once '../dompdf/autoload.inc.php';
 
+use Dompdf\Dompdf;
+$dompdf = new Dompdf();
+
+ob_start();
 include "../conexion.php";
-
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
@@ -37,126 +40,57 @@ if (isset($_GET['id'])) {
     }
 }
 
-
-
-
 ?>
 <!doctype html>
 <html lang="es">
 
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema Administrativo Pack</title>
     <meta name="keywords" content="">
     <meta name="description" content="Gestión de Cheques">
     <meta name="author" content="Carolina Ayelen Calviño">
-    <!--Css-->
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href='css/style.css'>
-    <link href="css/dashboard.css" rel="stylesheet">
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/">
-    <!--iconos-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
-    <!--Fonts-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">    <!--iconos-->
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
       
-   .guia{
+    .guia{
 
-      text-align: center;
-   }
-  .bd-placeholder-img {
-    font-size: 1.125rem;
-    text-anchor: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    user-select: none;
-  }
-
-  @media (min-width: 768px) {
-    .bd-placeholder-img-lg {
-      font-size: 3.5rem;
+        text-align: center;
     }
-  }
+    .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+    }
 
-.box01{
-    width: 1020px;
-    height:300px;
-    border:5px solid red;
-    background:red;
-    color:black;
-    display:flex;
-    align-items:flex-end;
-}
-.box02{
-    width:200px;
-    height:150px;
-    /*background:blue;*/
-}
-.box03{
-    width:270px;
-    height:150px;
-    margin-left:220px;
-    /*background:green;*/
-}
-.box04{
-    width:175px;
-    height:150px;
-    margin-left:570px;
-    /*background:red;*/
-    
-}
-
-.box05{
-    width: 1020px;
-    height:150px;
-    border:5px solid red;
-    background:red;
-    color:black;
-    display:flex;
-    align-items:flex-end;
-}
-.box06{
-    width:270px;
-    height:100px;
-   
-}
-.box07{
-    width:270px;
-    height:100px;
-    margin-left:300px;
-
-}
-.box08{
-    width:175px;
-    height:100px;
-    margin-left:650px;
-
-}
-.membretes{
-    font-size: 0.6rem;
-}
-.nombre{
-    font-size: 0.8rem;
-}
-#detalle{
-    font-size: 0.5rem;
-}
-
-</style>
+    @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+        }
+    }
+    </style>
 </head>
 <body>
-
-
 <br>
-<div class="box01">
-    <div class="box02">
-    <h3> <?php echo $guiaAWB;?></h3>
-    <h5 class="membretes">Shipper´s Name and Address</h5>
-
-        <?php
+<div class="container">
+    <div class="row" style="border:solid black 0.5px;">
+        <div class="col-xs-6">
+            <h3> <?php echo $guiaAWB;?></h3>
+        </div>
+        <div class="col-xs-6">
+            <h3> <?php echo $guiaAWB;?></h3>
+        </div>
+    </div>
+    <div class="row" style="border:solid black 0.5px;">
+        <div class="col-xs-4" style="border-right:solid black 0.5px;">
+            <h6>Shipper´s Name and Address</h6>
+            <?php
             $queryEnvia = "SELECT * FROM personas WHERE id_persona =$remitente";
             $resultadoEnv = mysqli_query($conexion, $queryEnvia);
             while ($rowEnv = $resultadoEnv->fetch_assoc()) {?>
@@ -165,20 +99,71 @@ if (isset($_GET['id'])) {
                 <p class="nombre"><?php echo $rowEnv['direccion'] . ' ' . $rowEnv['pais'] . ' ' . $rowEnv['departamento']; ?></p>
                 <p class="nombre">Tel.:<?php echo $rowEnv['tel']; ?></p>
                 <?php
+            }
+            ?>
+        </div>
+        <div class="col-xs-2">
+            <h6>Not Negotiable</h6>
+            <h3>Air Waybill</h3>
+            <h6>Issued by</h6>
+        </div>
+        <div class="col-xs-6" style="text-align:center">
+            <h4>COPA AIRLINES</h4>
+            <H4>Compañia Panameñia de Aviación, S.A</H4>
+            <h4>P.O.BOX 1572</h4>
+            <h4>PANAMA 1, PANAMA</h4>
+            <p>Copies 1, 2 and 3 of this Air Waybill are originals and <br>have the same validity</p>
+        </div>
+    </div>
+    <div class="row" style="border:solid black 0.5px;">
+        <div class="col-xs-4">
+            <h5 class="membretes">Consignee´s Name and Address</h5>
+            <?php
+            $queryDest = "SELECT * FROM personas  WHERE id_persona =$destinatario";
+            $resultadoDest = mysqli_query($conexion, $queryDest);
+            while ($rowDest = $resultadoDest->fetch_assoc()) {?>
+                <p class="nombre"><?php echo $rowDest['nombre'] . ' ' . $rowDest['apellidos']; ?></p>
+                <p class="nombre"><?php echo $rowDest['direccion'] . ' ' . $rowDest['pais'] . ' ' . $rowDest['departamento']; ?></p>
+                <p class="nombre">Tel.: <?php echo $rowDest['tel']; ?></p>
+            <?php
             }?>
-       
-        <h5 class="membretes">Consignee´s Name and Address</h5>
-        
-        <?php
+        </div>
+        <div class="col-xs-8" style="border-left:solid black 0.5px;">
+            <p>It is agreed that the goods described herein are accepted in apparent good order an condition<br> (except as noted) for carriage SUBJECT TO THE CONDITIONS OF
+            CONTRACT ON THE REVERSE HEREOF, ALL GOODS MAY BE CARRIED BY ANY OTHER MEANS INCLUDING ROAD OR ANY <br>OTHER CARRIER UNLESS
+            SPECIFIC CONTRARY INSTRUCTIONS ARE GIVEN HEREON BY THE SHIPPER, AND SHIPPER AGREES TAHT THE SHIPMENT MAY BE CARRIED VIA
+            INTERMEDIATE STOPPING PLACES WICH THE CARRIER DEEMS APPROPRIATE. THE SHIPPER´S ATTENTION<br> IS DRAWN TO THE NOTICE CONCERNING
+            CARRIER´S LIMITATION OF LIABILITY. Shipper may<br> increase such limitation of liability by declaring a higher value for carriage and paying a supplemental <br>charge if
+            required. </p>
+        </div>
+    </div>
+    <div class="row" style="border:solid black 0.5px;">
+        <div class="col-xs-4" style="border-right:solid black 0.5px;">
+            <div style="border-bottom:solid black 0.5px">
+                <h6>Issuing Carrier´s Agent Name and City</h6>
+                <p>FERIBAN - MONTEVIDEO URUGUAY </p>
+            </div>
+            <div style="border-bottom:solid black 0.5px">
+                <h6>Agent´s IATA Code</h6>
+            </div>
+            <div style="border-bottom:solid black 0.5px">
+                <h6>Account No.</h6>
+            </div>
+            <h6> Airport of Departure (Addr. Of First Carrier) and Requested Routing </h6>
+            <p style="text-align:center"><?php echo $pais_origen; ?> </p>
+        </div>
+        <div class="col-xs-8">
+            <h6>Accounting Information</h6>
+            <p>FREIGHT PREPAID</p>
+        </div>
+    </div>
+</div>
 
-        $queryDest = "SELECT * FROM personas  WHERE id_persona =$destinatario";
-        $resultadoDest = mysqli_query($conexion, $queryDest);
-        while ($rowDest = $resultadoDest->fetch_assoc()) {?>
-            <p class="nombre"><?php echo $rowDest['nombre'] . ' ' . $rowDest['apellidos']; ?></p>
-            <p class="nombre"><?php echo $rowDest['direccion'] . ' ' . $rowDest['pais'] . ' ' . $rowDest['departamento']; ?></p>
-            <p class="nombre">Tel.: <?php echo $rowDest['tel']; ?></p>
-        <?php
-        }?>
+<!--hasta aca llegue-->
+
+
+       
+      
         
         <h5 class="membretes">Issuing Carrier´s Agent Name and City</h5>
         <p class="nombre">FERIBAN - MONTEVIDEO URUGUAY </p>
@@ -206,14 +191,7 @@ if (isset($_GET['id'])) {
 
 
 </div>  
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
   
 
     <div class="box05">
@@ -247,8 +225,19 @@ if (isset($_GET['id'])) {
          
                 <!----------fin guia de embarque----------->
 
+<?php
+$html = ob_get_clean();
 
+$options = $dompdf->getOptions();
+$options->set(array('isRemoteEnabled' => true));
+$dompdf->setOptions($options);
 
+$dompdf->loadHtml($html);
+$dompdf->setPaper('A4', 'landscape');
+
+$dompdf->render();
+$dompdf->stream("reportes.pdf", array("Attachment"=>false));
+?>
     
 
 </body>
