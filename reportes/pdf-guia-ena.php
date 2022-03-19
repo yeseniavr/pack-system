@@ -74,22 +74,46 @@ if (isset($_GET['id'])) {
         font-size: 3.5rem;
         }
     }
+
+    th{
+        font-size: 6px;
+        border-right:0.5px solid black;
+    }
+    td{
+        border-right:0.5px solid black;
+        /*border-bottom:0.5px solid black;*/
+        font-size:7px;
+    }
+    .espacio{
+        width:100%;
+        height:90px;
+    }
+    .nombre{
+        font-size:8px;
+    }
+    html {
+	margin-top: 8pt;
+
+    }
+    .table{
+        margin:0px!important;
+    }
     </style>
 </head>
 <body>
 <br>
 <div class="container">
-    <div class="row" style="border:solid black 0.5px;">
+    <div class="row" style="border:solid black 0.5px";>
         <div class="col-xs-6">
-            <h3> <?php echo $guiaAWB;?></h3>
+            <h5>230-MTV- <?php echo $guiaAWB;?></h5>
         </div>
         <div class="col-xs-6">
-            <h3> <?php echo $guiaAWB;?></h3>
+            <h5>230- <?php echo $guiaAWB;?></h5>
         </div>
     </div>
     <div class="row" style="border:solid black 0.5px;">
         <div class="col-xs-4" style="border-right:solid black 0.5px;">
-            <h6>Shipper´s Name and Address</h6>
+            <p style="font-size: 8px">Shipper´s Name and Address</p>
             <?php
             $queryEnvia = "SELECT * FROM personas WHERE id_persona =$remitente";
             $resultadoEnv = mysqli_query($conexion, $queryEnvia);
@@ -103,21 +127,18 @@ if (isset($_GET['id'])) {
             ?>
         </div>
         <div class="col-xs-2">
-            <h6>Not Negotiable</h6>
-            <h3>Air Waybill</h3>
-            <h6>Issued by</h6>
+            <p style="font-size: 8px">Not Negotiable</p>
+            <h6>Air Waybill</h6>
+            <p style="font-size: 8px">Issued by</p>
         </div>
         <div class="col-xs-6" style="text-align:center">
-            <h4>COPA AIRLINES</h4>
-            <H4>Compañia Panameñia de Aviación, S.A</H4>
-            <h4>P.O.BOX 1572</h4>
-            <h4>PANAMA 1, PANAMA</h4>
-            <p>Copies 1, 2 and 3 of this Air Waybill are originals and <br>have the same validity</p>
+            <h6>COPA AIRLINES<br>Compañia Panameñia de <br> Aviación, S.A.<br> P.O.BOX 1572 PANAMA 1,<br> PANAMA</h6>
+            <p style="font-size: 8px">Copies 1, 2 and 3 of this Air Waybill are <br>originals and have the same validity</p>
         </div>
     </div>
     <div class="row" style="border:solid black 0.5px;">
         <div class="col-xs-4">
-            <h5 class="membretes">Consignee´s Name and Address</h5>
+            <p style="font-size: 8px">Consignee´s Name and Address</p>
             <?php
             $queryDest = "SELECT * FROM personas  WHERE id_persona =$destinatario";
             $resultadoDest = mysqli_query($conexion, $queryDest);
@@ -129,101 +150,317 @@ if (isset($_GET['id'])) {
             }?>
         </div>
         <div class="col-xs-8" style="border-left:solid black 0.5px;">
-            <p>It is agreed that the goods described herein are accepted in apparent good order an condition<br> (except as noted) for carriage SUBJECT TO THE CONDITIONS OF
-            CONTRACT ON THE REVERSE HEREOF, ALL GOODS MAY BE CARRIED BY ANY OTHER MEANS INCLUDING ROAD OR ANY <br>OTHER CARRIER UNLESS
-            SPECIFIC CONTRARY INSTRUCTIONS ARE GIVEN HEREON BY THE SHIPPER, AND SHIPPER AGREES TAHT THE SHIPMENT MAY BE CARRIED VIA
-            INTERMEDIATE STOPPING PLACES WICH THE CARRIER DEEMS APPROPRIATE. THE SHIPPER´S ATTENTION<br> IS DRAWN TO THE NOTICE CONCERNING
-            CARRIER´S LIMITATION OF LIABILITY. Shipper may<br> increase such limitation of liability by declaring a higher value for carriage and paying a supplemental <br>charge if
+            <p style="font-size: 7px">It is agreed that the goods described herein are accepted in apparent good order an condition (except as noted) for carriage SUBJECT <br>TO THE CONDITIONS OF
+            CONTRACT ON THE REVERSE HEREOF, ALL GOODS MAY BE CARRIED BY ANY OTHER MEANS<br> INCLUDING ROAD OR ANY OTHER CARRIER UNLESS
+            SPECIFIC CONTRARY INSTRUCTIONS ARE GIVEN HEREON BY THE<br> SHIPPER, AND SHIPPER AGREES TAHT THE SHIPMENT MAY BE CARRIED VIA
+            INTERMEDIATE STOPPING PLACES WICH THE <br>CARRIER DEEMS APPROPRIATE. THE SHIPPER´S ATTENTION IS DRAWN TO THE NOTICE CONCERNING
+            CARRIER´S<br> LIMITATION OF LIABILITY. Shipper may increase such limitation of liability by declaring a higher value for carriage and paying a <br>supplemental charge if
             required. </p>
         </div>
     </div>
     <div class="row" style="border:solid black 0.5px;">
         <div class="col-xs-4" style="border-right:solid black 0.5px;">
             <div style="border-bottom:solid black 0.5px">
-                <h6>Issuing Carrier´s Agent Name and City</h6>
-                <p>FERIBAN - MONTEVIDEO URUGUAY </p>
+                <p style="font-size: 8px">Issuing Carrier´s Agent Name and City</p>
+                <p class="nombre">FERIBAN - MONTEVIDEO URUGUAY </p>
             </div>
-            <div style="border-bottom:solid black 0.5px">
-                <h6>Agent´s IATA Code</h6>
-            </div>
-            <div style="border-bottom:solid black 0.5px">
-                <h6>Account No.</h6>
-            </div>
-            <h6> Airport of Departure (Addr. Of First Carrier) and Requested Routing </h6>
-            <p style="text-align:center"><?php echo $pais_origen; ?> </p>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>Agent´s IATA Code</td>
+                        <td style="border-right:none">Account No.</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="font-size: 8px; border-top:solid black 0.5px;"> Airport of Departure (Addr. Of First Carrier) and Requested Routing </p>
+            <p class="nombre" style="text-align:center"><?php echo $pais_origen; ?> </p>
         </div>
         <div class="col-xs-8">
-            <h6>Accounting Information</h6>
-            <p>FREIGHT PREPAID</p>
+            <p style="font-size: 8px">Accounting Information</p>
+            <p class="nombre">FREIGHT PREPAID</p>
+        </div>
+    </div>
+    <div class="row" style="border:solid black 0.5px;">
+        <div class="col-xs-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>To</th>
+                        <th>By First Carrier</th>
+                        <th>To</th>
+                        <th>By</th>
+                        <th>To</th>
+                        <th>By</th>
+                        <th>Currency</th>
+                        <th>CHGS Code</th>
+                        <th>WT/VAL</th>
+                        <th>Other</th>
+                        <th>Declared Value for Carriage</th>
+                        <th style="border:none">Declared Value for Customs</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>PTY</td>
+                        <td>COPA AIRLINES</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>USD</td>
+                        <td>PP</td>
+                        <td>PPD</td>
+                        <td>PPD</td>
+                        <td>NVD</td>
+                        <td style="border-right:none">NVD</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row" style="border:solid black 0.5px;">
+        <div class="col-xs-3">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Airport of Destination</th>
+                        <th>Fligth/Date</th>
+                        <th>Fligth/Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>HABANA</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-xs-9">
+        <table class="table">
+                <thead>
+                    <tr>
+                        <th>Amount of Insurance</th>
+                        <th style="border:none">INSURANCE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>N I L</td>
+                        <td style="border-right:none; font-size: 8px">If carrier offers insurance, and such insurance is
+                        requested in accordance with conditions thereof, <br>indicate amount
+                        to be insured in figures in box marked "Amount of Insurance".
+                        </td>                    
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row" style="border:solid black 0.5px;">
+        <div class="col-xs-6">
+            <p style="font-size: 8px">Handling Information</p>
+            <p class="nombre">** EQUIPAJE NO ACOMPAÑADO - EFECTOS PERSONALES**</p>
+        </div>
+        <div class="col-xs-4"> 
+            <p style="font-size: 8px">Diversion contrary to U.S. Law prohibited</p>
+        </div>
+        <div class="col-xs-2" style="border-left:solid black 0.5px;">
+            <p style="font-size: 8px">SCI</p>
+        </div>
+    </div>
+    <div class="row" style="border:solid black 0.5px;">
+        <div class="col-xs-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>No. Of Pieces RCP</th>
+                        <th>Gross Weight</th>
+                        <th>Kg</th>
+                        <th>Commodity Item No.</th>
+                        <th>Chargeable Weight</th>
+                        <th>Rate/Charge</th>
+                        <th>Total</th>
+                        <th style="border:none">Nature and Quantity of Goods(incl. Dimensions or <br>Volume)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>5</td>
+                        <td>80,00</td>
+                        <td>Kg</td>
+                        <td></td>
+                        <td>80,00</td>
+                        <td></td>
+                        <td>AS AGREED</td>
+                        <td style="border-right:none; font-size: 9px">EQUIPAJE NO ACOMPAÑADO <br>EFECTOS PERSONALES
+                        </td>                    
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row" style="border:solid black 0.5px;">
+        <div class="col-xs-4" style="border-right:solid black 0.5px">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Prepaid</th>
+                        <th>Weight Charge</th>
+                        <th style="border-right:none">Collect</th>
+                    </tr>
+                </thead>
+            </table>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th style="border-top:none">0,00</th>
+                        <th style="border-top:none; border-right:none">0,00</th>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="nombre" style="text-align:center;">Valuation Charge</p>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th></th>
+                        <th style="border-right:none"></th>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="nombre" style="text-align:center;">Tax</p>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th></th>
+                        <th style="border-right:none"></th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-xs-8">
+            <p style="font-size: 8px">Other Charges</p>
+        </div>
+    </div>
+    <div class="row" style="border:solid black 0.5px;">
+        <div class="col-xs-4" style="border-right:solid black 0.5px">
+            <p class="nombre" style="text-align:center;">Total Other Charges Due Agent</p>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th>0,00</th>
+                        <th style="border-right:none">0,00</th>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="nombre" style="text-align:center;">Total Other Charges Due Carrier</p>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th style="visbility:hidden">0,00</th>
+                        <th style="border-right:none">0,00</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-xs-8">
+            <p style="font-size: 8px">Shipper certifies that the particulars on the face hereof are correct and that insofar as any part<br> of the consignment contains dangerous goods, such part is properly described by name and is<br> in proper condition for carriage by air according to the applicable  Dangerous Goods Regularions.</p>
+            <p style="text-align:center">---------------------------------------</p>
+            <p style="font-size: 8px;text-align:center">Signature of Shipper or its Agent</p>
+        </div>
+    </div>
+    <div class="row" style="border:solid black 0.5px;">
+        <div class="col-xs-4" style="border-right:solid black 0.5px">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Total Prepaid</th>
+                        <th style="border-right:none">Total Collect</th>
+                    </tr>
+                </thead>
+            </table>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th style="border-top:none">AS AGREED</th>
+                        <th style="border-top:none; border-right:none">0,00</th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-xs-8">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td style="border:none">16 de Marzo de 2022</td>
+                        <td style="border:none"></td>
+                        <td style="border:none">DM</td>
+                    </tr>
+                    <tbody>
+                    <tr>
+                        <th style="border:none">date</th>
+                        <th style="border:none">at(place)</th>
+                        <th style="border:none">Signature of Issuing Carrier <br>or its Agent</th>
+                    </tr>
+                </tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row" style="border:solid black 0.5px;">
+        <div class="col-xs-4" style="border-right:solid black 0.5px">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Currency Conversion Rates</th>
+                        <th style="border-right:none">CC Charges in Dest. Currency</th>
+                    </tr>
+                </thead>
+            </table>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th style="border-top:none"></th>
+                        <th style="border-top:none; border-right:none"></th>
+                    </tr>
+                </tbody>
+            </table>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>For Carriers Use only at Destination</th>
+                        <th style="border-right:none">Charges at Destination</th>
+                    </tr>
+                </thead>
+            </table>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th style="border-top:none"></th>
+                        <th style="border:none"></th>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-xs-8">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Total Collect Charges</th>
+                    </tr>
+                </thead>
+            </table>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th style="border-top:none"></th>
+                    </tr>
+                </tbody>
+            </table>
+            <h5>230- <?php echo $guiaAWB;?></h5>
         </div>
     </div>
 </div>
-
-<!--hasta aca llegue-->
-
-
-       
-      
-        
-        <h5 class="membretes">Issuing Carrier´s Agent Name and City</h5>
-        <p class="nombre">FERIBAN - MONTEVIDEO URUGUAY </p>
-        <h5 class="membretes">Agent´s IATA Code         Account No</h5>
-        <h5 class="membretes"> Airport of Departure (Addr. Of First Carrier) and Requested Routing </h5>
-        <p class="nombre"><?php echo $pais_origen; ?> </p>
-
-    </div>
-
-    <div class="box03">
-
-        <h3> <?php echo $guiaAWB;?></h3>
-        <h5 class="membretes">Not Negotiable</h5>    Pack Express Uruguay S.A.S (COMVD07341)</p>
-        <p class="nombre">Aeropuerto de Carrasco, Montevideo (MVD)</p>
-        <p class="nombre"> Carlos Quijano 1258 Esq. Soriano, Centro. Montevideo, Uruguay</p>
-        <h5 class="membretes"> Copies 1, 2 and 3 of this Air Waybill are originals and have the same validity.</h5>
-        <p id="detalle">It is agreed that the goods described herein are accepted in apparent good order an condition (except as noted) for carriage SUBJECT TO THE CONDITIONS OF CONTRACT ON THE REVERSE HEREOF, ALL GOODS MAY BE CARRIED BY ANY OTHER MEANS INCLUDING ROAD OR ANY OTHER CARRIER UNLESS SPECIFIC CONTRARY INSTRUCTIONS ARE GIVEN HEREON BY THE SHIPPER, AND SHIPPER AGREES TAHT THE SHIPMENT MAY BE CARRIED VIA INTERMEDIATE STOPPING PLACES WICH THE CARRIER DEEMS APPROPRIATE. THE SHIPPER´S ATTENTION IS DRAWN TO THE NOTICE CONCERNING CARRIER´S LIMITATION OF LIABILITY. Shipper may increase such limitation of liability by declaring a higher value for carriage and paying a supplemental charge if required.
-        <h5 class="membretes">Accounting Information</h5>
-        <p class="nombre">FREIGHT PREPAID</p>
-
-
-    </div>
-
-
-
-
-</div>  
-
-  
-
-    <div class="box05">
-
-                
-                <div class="box06">
-                    <!--<p><strong>Fecha:--> <?php /*echo $row['fecha']; */?> <!--</strong></p>-->
-                    <p><strong>Fecha embarque: <?php echo $row['fecha_emb']; ?></strong></p>
-                    <p><strong>Valor mercancía (USD): <?php echo $row['valor_mercancia']; ?></strong></p>
-                </div>
-                <div class="box07">
-                    <p><strong>Peso (Kg): <?php echo $row['peso_real']; ?></strong></p>
-                    <p><strong>Descripción: <?php echo $row['descripcion']; ?></strong></p>
-                   <!-- <p><strong>Tipo de bulto:--> <?php /* echo $row['tipo_bulto'];*/ ?></strong></p>
-                   <!-- <p><strong>Cond. Entrega: <?php /*echo $row['incotem']; */?></strong></p>
-                </div>
-                <div class="box08">
-                    <p><strong>Producto: IES</strong></p>
-                    <p><strong>Bultos: <?php echo $row['cantidad_bulto']; ?></strong></p>
-                    <?php
-                    if ($peso_real > $peso_volumetrico) {?>
-                        <p><strong>Peso a cobrar: <?php echo $peso_real; ?></strong></p>
-                    <?php
-                    } else {?>
-                    <p><strong>Peso a cobrar: <?php echo $peso_volumetrico; ?> </strong></p>
-                    <?php }?>
-                    <p><strong>Status: </strong></p>
-                </div>
-            </div>  
-
-         
-                <!----------fin guia de embarque----------->
 
 <?php
 $html = ob_get_clean();
@@ -233,7 +470,7 @@ $options->set(array('isRemoteEnabled' => true));
 $dompdf->setOptions($options);
 
 $dompdf->loadHtml($html);
-$dompdf->setPaper('A4', 'landscape');
+$dompdf->setPaper('A4', 'portrait');
 
 $dompdf->render();
 $dompdf->stream("reportes.pdf", array("Attachment"=>false));

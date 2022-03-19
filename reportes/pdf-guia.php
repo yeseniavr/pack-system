@@ -45,19 +45,8 @@ if (isset($_GET['id'])) {
     <meta name="keywords" content="">
     <meta name="description" content="Gestión de Cheques">
     <meta name="author" content="Carolina Ayelen Calviño">
-    <!--Css-->
-   <!-- <link rel="stylesheet" href="../css/bootstrap.css">
-    <link rel="stylesheet" href='../css/style.css'>
-    <link href="../css/dashboard.css" rel="stylesheet">
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sidebars/"> -->
-    <!-- Latest compiled and minified CSS -->
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">    <!--iconos-->
-   <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">-->
-    <!--Fonts-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">    <!--iconos-->
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
     <style>
       
@@ -78,14 +67,17 @@ if (isset($_GET['id'])) {
       font-size: 3.5rem;
     }
   }
+  p{
+      font-size:10px;
+  }
 </style>
 </head>
 <body>
 <br>
 <div class="container">
     <div class="row" style="border:solid 1px black;">
-        <div class="col-xs-4">
-            <img src="http://<?php echo $_SERVER['HTTP_HOST'];  ?>/pack/proyecto-pack-master/img/logo.png" style="max-width: 200px; margin-top:15px" alt="logo pack">
+        <div class="col-xs-3">
+            <img src="http://<?php echo $_SERVER['HTTP_HOST'];  ?>/pack/proyecto-pack-master/img/logo.png" style="max-width: 150px; margin-top:15px" alt="logo pack">
             <br>
             <p><strong>Cliente: </strong>Pack Express Uruguay S.A.S (COMVD07341)</p>
             <p><strong>Origen: </strong>Aeropuerto de Carrasco, Montevideo (MVD)</p>
@@ -93,15 +85,15 @@ if (isset($_GET['id'])) {
             <p><strong>Tel.: </strong>(+598) 2902 7227 / (+598) 93 594 297</p>
             <p><strong>Email: </strong>packexpress2021@gmail.com</p>
         </div>
-        <div class="col-xs-3" style="border:solid 1px black; text-align:center">
+        <div class="col-xs-4" style="border:solid 1px black; text-align:center">
             <?php
                 $queryPais = "SELECT * FROM cod_pais WHERE id_pais =$cod_origen";
                 $resultadoPais= mysqli_query($conexion, $queryPais);
                 while ($rowPais = $resultadoPais->fetch_assoc()) {?>
                     <div>
-                        <h3>Destino: <?php $codPais = $rowPais['codigo'];
+                        <h5>Destino: <?php $codPais = $rowPais['codigo'];
                         echo $codPais; ?>
-                        </h3> 
+                        </h5> 
                         <?php
                         $barHTML = new Picqer\Barcode\BarcodeGeneratorHTML();
                         $codPais = $rowPais['codigo'];
@@ -116,7 +108,7 @@ if (isset($_GET['id'])) {
             ?>
         </div>
         <div class="col-xs-5">
-            <h2><u>Remitente</u></h2>
+            <h5><u>Remitente</u></h5>
             <?php
                 $queryEnvia = "SELECT * FROM personas WHERE id_persona =$remitente";
                 $resultadoEnv = mysqli_query($conexion, $queryEnvia);
@@ -127,7 +119,7 @@ if (isset($_GET['id'])) {
                     <?php
                 }?>
             
-            <h2><u>Destinatario</u></h2>
+            <h5><u>Destinatario</u></h5>
 
             <?php
 
@@ -145,7 +137,7 @@ if (isset($_GET['id'])) {
 <div class="container">
     <div class="row" style="border-left:solid 1px black; border-right:solid 1px black;">
         <div class="col-xs-12" style="text-align:center">
-            <h2><u>Información de Envío</u></h2>
+            <h5><u>Información de Envío</u></h5>
             <br>
         </div>
     </div>
@@ -190,7 +182,7 @@ $options->set(array('isRemoteEnabled' => true));
 $dompdf->setOptions($options);
 
 $dompdf->loadHtml($html);
-$dompdf->setPaper('A4', 'landscape');
+$dompdf->setPaper('A4', 'portrait');
 
 $dompdf->render();
 $dompdf->stream("reportes.pdf", array("Attachment"=>false));
