@@ -36,8 +36,19 @@ if (isset($_GET['id'])) {
     <script src="https://kit.fontawesome.com/80d0152778.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <br>
-<h2>Declaración Jurada</h2>
-
+<div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Declaración Jurada</h2>
+            </div>
+            <div class="col-md-6">
+               <h2><?php  $length = 5;
+              $numero_guia = substr(str_repeat(0, $length).$id_guia, - $length);
+              echo $numero_guia; ?></h2>
+              <?php ?>
+            </div>
+        </div>
+    </div>
 <br>
 <form id="formularioDJ"  method="GET" action="reportes\pdfdeclaracionJ.php" >
     <input type="hidden" name="id_guia" value=<?php echo $id; ?> >
@@ -70,7 +81,7 @@ if (isset($_GET['id'])) {
                     <?php
                         $codPais = $rowPais['codigo'];
                     ?>
-                    <p><strong>Enviado desde: </strong><?php echo $codPais; ?></p>
+                    <p><strong>Origen: </strong><?php echo $codPais; ?></p>
                 </div> <?php
                 } ?>
                 <?php
@@ -95,7 +106,7 @@ if (isset($_GET['id'])) {
                     <?php
                         $codPais = $rowPais['codigo'];
                     ?>
-                    <p><strong>Enviado desde: </strong><?php echo $codPais; ?></p>
+                    <p><strong>Destino: </strong><?php echo $codPais; ?></p>
                 </div> <?php
                 } ?>
                 <?php

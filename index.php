@@ -34,7 +34,7 @@
                 <a href="#"><p>Para registrarse por favor comuniquese a hola@gmail.com</p></a>
             </div>
             <div class="col-md-6 div-form">
-                <h2>Log in</h2>
+                <h2>Login</h2>
             <!--PHP Version 7.4.12
 -->
                 <div class="centrado">

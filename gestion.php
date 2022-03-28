@@ -48,11 +48,11 @@ if (isset($_POST["enviar-nombre"])) {
     <table class="table table-striped table-sm">
       <thead>
         <tr>
-          <th scope="col">DNI</th>
+          <th scope="col">Documento</th>
           <th scope="col">Nombre</th>
           <th scope="col">Apellido</th>
           <th scope="col">Dirección</th>
-          <th scope="col">tel</th>
+          <th scope="col">Teléfono</th>
           <th scope="col">País</th>
           <th scope="col">Departamento</th>
           <th scope="col">Cod Postal</th>

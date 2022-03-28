@@ -70,14 +70,14 @@ include_once "includes/footer.php";
                 <div class="row">
                     <h4>Datos de Envío</h4><br>
                     <div class="col-md-4 div-nuevo">
-                        <label>País de origen</label> 
+                        <label>País de Origen</label> 
                         <select id="cod_origen" name="cod_origen" class="form-select" aria-label="Default select example">
                             <option value="0">Seleccione:</option>
                             <?php
                             $query = "SELECT * FROM cod_pais";
                             $result = mysqli_query($conexion, $query);
                             while ($row = mysqli_fetch_array($result)) {
-                                echo '<option value="' . $row['id_pais'] . '">' . $row['codigo'] . '</option>';
+                                echo '<option value="' . $row['id_pais'] . '">' . $row['descripcion'] . '</option>';
                             }
                             ?>
                         </select>
@@ -90,7 +90,7 @@ include_once "includes/footer.php";
                                 $query = "SELECT * FROM cod_pais";
                                 $result = mysqli_query($conexion, $query);
                                 while ($row = mysqli_fetch_array($result)) {
-                                    echo '<option value="' . $row['id_pais'] . '">' . $row['codigo'] . '</option>';
+                                    echo '<option value="' . $row['id_pais'] . '">' . $row['descripcion'] . '</option>';
                                 }
                                 ?>
                         </select>
@@ -117,7 +117,7 @@ include_once "includes/footer.php";
                         </select>
                         </div>
                         <div class="col-md-4 div-nuevo">
-                            <label>N° de bulto</label>
+                            <label>Cantidad de Bultos</label>
                             <input type="text" name="num_bulto" id="num_bulto" class='form-control' maxlength="25" required ></input>
                         </div>
                         <div class="col-md-4 div-nuevo">

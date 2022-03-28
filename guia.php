@@ -59,13 +59,13 @@ $where = "WHERE personasEnv_id LIKE '%$valor%' OR id_guia LIKE '%$valor%' OR per
     <table class="table table-striped table-sm">
       <thead>
         <tr>
-          <th scope="col">Número de guía</th>
+          <th scope="col">Guía</th>
           <th scope="col">Remitente</th>
           <th scope="col">Destinatario</th>
           <th scope="col">Destino</th>
-          <th scope="col">Fecha Embarque</th>
-          <th scope="col">Volumen</th>
-          <th scope="col">Empaquetado</th>
+          <th scope="col">Fecha</th>
+          <th scope="col">Piezas</th>
+          <th scope="col">Peso</th>
           <th scope="col">Acciones</th>
         </tr>
       </thead>
@@ -110,8 +110,9 @@ while ($row = mysqli_fetch_array($result)) {?>
              <?php }
               ?>
               <td><?php echo $row['fecha_emb']; ?></td>
+              <td><?php echo $row['cantidad_bulto']; ?></td>
               <td><?php echo $row['peso_volumetrico']; ?></td>
-              <td><?php echo $row['empaquetado']; ?></td>
+              <!-- <td><?php echo $row['empaquetado']; ?></td>-->
               <td><a class="btn btn-secondary" data-toggle="popover" title="Editar" href="editar-guia.php?id=<?php echo $row['id_guia']; ?>"><i class="bi bi-pencil-fill"></i></a>
                   <a class="btn btn-danger" data-toggle="popover" title="Eliminar" onclick="return  confirm('¿Desea eliminar el registro?')"href="eliminar-guia.php?id=<?php echo $row['id_guia']; ?>"><i class="bi bi-trash-fill" ></i></a>
                   <?php 

@@ -10,7 +10,7 @@ if (isset($_GET['id'])) {
 
     if (mysqli_num_rows($resultado) == 1) {
         $row = mysqli_fetch_array($resultado);
-        $peso_real = $row['peso_real'];
+        $guia= $row['id_guia'];
         $cod_origen = $row['cod_origen'];
         $cod_destino = $row['cod_destino'];
         $fecha = $row['fecha_emb'];
@@ -64,7 +64,19 @@ include_once "includes/header.php";
 include_once "includes/sidebar.php";
 ?>
 <br>
-<h2>Modificar Guía de embarque</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Modificar Guía de Embarque</h2>
+            </div>
+            <div class="col-md-6">
+               <h2><?php  $length = 5;
+              $numero_guia = substr(str_repeat(0, $length).$guia, - $length);
+              echo $numero_guia; ?></h2>
+              <?php ?>
+            </div>
+        </div>
+    </div>
     <div class="container">
     <form class="form-horizontal" method="POST" action="editar-guia.php?id=<?php echo $_GET['id']; ?>" autocomplete="off">
         <div class="row">
@@ -114,7 +126,7 @@ include_once "includes/sidebar.php";
                 <h4>Datos de Envío</h4>
                 <br>
                 <div class="col-md-3 div-nuevo">
-                    <label>Cod de origen</label>  <!--Llenado pais actual y todos -->
+                    <label>País de Origen</label>  <!--Llenado pais actual y todos -->
                     <select name="cod-origen" class="form-select" aria-label="Default select example">
                         
                     <?php
@@ -133,7 +145,7 @@ include_once "includes/sidebar.php";
                     </select>
                 </div>
                 <div class="col-md-3 div-nuevo">
-                    <label>Cod de destino</label>  <!--Llenado pais actual y todos -->
+                    <label>País de Destino</label>  <!--Llenado pais actual y todos -->
                     <select name="cod-destino" class="form-select" aria-label="Default select example">
                         
                     <?php
@@ -173,7 +185,7 @@ include_once "includes/sidebar.php";
                         </select>
                     </div>
                     <div class="col-md-4 div-nuevo">
-                        <label>N° de bulto</label>
+                        <label>Cantidad de Bultos</label>
                         <input type="text" value='<?php echo $num_bulto; ?>' name="num-bulto" id="numero" class='form-control' maxlength="25" required ></input>
                     </div>
                     <div class="col-md-4 div-nuevo">
@@ -189,7 +201,7 @@ include_once "includes/sidebar.php";
                 <div class="row">
                     <div class="col-md-4 div-nuevo">
                         <label>Peso Real</label>
-                        <input type="text" name="peso-real" value='<?php echo $peso_real; ?>' id="nombre" class='form-control' maxlength="25" required ></input>
+                        <input type="text" name="peso-real" value='<?php echo $peso_real; ?>' id="real" class='form-control' maxlength="25" required ></input>
                     </div>
                     <div class="col-md-4 div-nuevo">
                         <label>Peso Volumétrico</label>

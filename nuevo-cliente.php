@@ -15,15 +15,15 @@ include_once "includes/footer.php";
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-4 div-nuevo">
-                        <label>DNI</label>
+                        <label>Documento</label>
                         <input type="text" name="dni" id="dni" class='form-control' maxlength="20" required ></input>
                     </div>
                     <div class="col-md-4 div-nuevo">
-                        <label>Nombres</label>
+                        <label>Nombre</label>
                         <input type="text" name="nombre" id="nombre" class='form-control' maxlength="25" required ></input>
                     </div>
                     <div class="col-md-4 div-nuevo">
-                        <label>Apellidos</label>
+                        <label>Apellido</label>
                         <input type="text" name="apellidos" id="apellidos" class='form-control' maxlength="25" required ></input>
                     </div>
                 </div>
@@ -65,7 +65,7 @@ include_once "includes/footer.php";
                         <input type="tel" class="form-control" id="telefono" name="tel">
                     </div>
                     <div class="col-md-4 div-nuevo">
-                        <label for="email" class="col-sm-2 control-label">Correo</label>
+                        <label for="email" class="col-sm-2 control-label">Email</label>
                         <input type="email" class="form-control" id="correo" name="correo" required>
                     </div>
                 </div>
